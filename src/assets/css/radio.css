@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Noto Sans'), local('NotoSans'), url('https://tumba.ch/static/fonts/NotoSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url('https://tumba.ch/static/fonts/NotoSans-Bold.woff2') format('woff2');
+}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #222 }
+::-webkit-scrollbar-thumb { background: #2ec2ff }
+* { box-sizing: border-box; }
+body {
+  position: absolute;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+  background: #222;
+  color: rgba(255,255,255, .7);
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+}
+#bckgrnd {
+  opacity: 0;
+  background-position: center;
+  background-size: cover;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  width: 100%; min-height: 100%;
+  transition: .5s background, .5s opacity;
+  filter: blur(10px);
+  z-index: -1;
+}
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.wrapper.streams {
+  min-height: 80vh;
+}
+.jsOnly { display: none; }
+.block { display: block; }
+.center { margin: 0 auto; text-align: center; }
+h1, h2, h3 {
+  position: absolute;
+  left: 4vmin;
+  margin: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+
+  width: 92vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*white-space: nowrap;*/
+  white-space: pre;
+  font-family: "Noto Mono", "Consolas", monospace;
+}
+menu {
+  position: absolute;
+  -webkit-padding-start: 0;
+  -moz-padding-start: 0;
+  margin: 0;
+  z-index: 1;
+}
+menu > * {
+  display: inline-block;
+  padding: 2vmin;
+}
+h1 {
+  bottom: 4vmin;
+  font-size: 8vmin;
+}
+h2 {
+  bottom: 13vmin;
+  font-size: 4vmin;
+}
+h3 {
+  bottom: 18vmin;
+  font-size: 2vmin;
+  font-weight: normal;
+}
+.online {
+  position: absolute;
+  top: 2vmin;
+  right: 2vmin;
+}
+.online:after {
+  font-family: Font Awesome\ 5 Free;
+  content: ' \f007';
+}
+.pasteleft {
+  position: absolute;
+  right: 2vmin;
+  bottom: 2vmin;
+}
+.pasteleft, menu {
+  color: rgba(255,255,255,.5);
+}
+a {
+  color: rgba(240,240,240,.7);
+}
+#button_play {
+  font-size: 10vmin;
+  transition: opacity .2s;
+}
+#button_play.fa-pause {
+  opacity: 0;
+}
+body:hover #button_play.fa-pause {
+  opacity: .24;
+}
+body:hover #button_play:hover {
+  opacity: 1;
+}
+.pointer {
+  cursor: pointer;
+}
+.history {
+  position: absolute;
+  bottom: 21vmin;
+  left: 4vmin;
+  opacity: .42;
+}
+.history, .history > * {
+  transition: opacity .2s;
+}
+.history:hover {
+  opacity: 1;
+}
+.history:hover > * {
+  opacity: 1 !important;
+}

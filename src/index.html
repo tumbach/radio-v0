@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0">
+    <title>Тумбач;Радио</title>
+  </head>
+  <body>
+    <main id="content">
+      <link rel="stylesheet" href="/assets/css/radio.css">
+      <link rel="stylesheet" href="/assets/css/fa.css">
+      <script src="/assets/js/index.js"></script>
+
+      <div id="bckgrnd"></div>
+
+      <menu class="menu">
+        <a href="/status.xsl" target="_blank">Icecast</a>
+        <a href="/static/playlist.m3u" target="_blank">M3U</a>
+      </menu>
+
+      <div class="online jsOnly">&mdash;</div>
+
+      <noscript>
+        <div class="wrapper center streams">
+            <div>
+              <div>Tumbach, OGG/192</div>
+              <br>
+              <audio class="block center" controls src="/stream" preload="none"></audio>
+            </div>
+            <div>
+              <div>Tumbach, AAC/64</div>
+              <br>
+              <audio class="block center" controls src="/stream-low" preload="none"></audio>
+            </div>
+            <div>
+              <div>Tumbach, AAC/32</div>
+              <br>
+              <audio class="block center" controls src="/stream-ultra-low" preload="none"></audio>
+            </div>
+        </div>
+      </noscript>
+
+      <div class="wrapper center jsOnly">
+        <i id="button_play" class="fas fa-play center block pointer"></i>
+      </div>
+
+      <div class="history"></div>
+      <h3>--:--:--</h3>
+      <h2><span class="jsOnly">Загрузка...</span><noscript>Версия без JS</noscript></h2>
+      <h1>Тумбач;Радио</h1>
+
+      <div class="pasteleft">
+        Powered by <a href="https://github.com/tumbach/titleturtle" target="_blank">titleturtle</a>
+      </div>
+
+    </main>
+  </body>
+</html>
