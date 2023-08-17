@@ -16,26 +16,17 @@
       <menu class="menu">
         <a href="/status.xsl" target="_blank">Icecast</a>
         <a href="/static/playlist.m3u" target="_blank">M3U</a>
+        <a href="https://radio.tumbach.one" target="_blank">radio.tumbach.one</a>
       </menu>
 
-      <div class="online jsOnly">&mdash;</div>
+      <!--<div class="online jsOnly">&mdash;</div>-->
 
       <noscript>
         <div class="wrapper center streams">
             <div>
-              <div>Tumbach, OGG/192</div>
+              <div>Tumbach</div>
               <br>
-              <audio class="block center" controls src="/stream" preload="none"></audio>
-            </div>
-            <div>
-              <div>Tumbach, AAC/64</div>
-              <br>
-              <audio class="block center" controls src="/stream-low" preload="none"></audio>
-            </div>
-            <div>
-              <div>Tumbach, AAC/32</div>
-              <br>
-              <audio class="block center" controls src="/stream-ultra-low" preload="none"></audio>
+              <audio class="block center" controls src="/stream.aac" preload="none"></audio>
             </div>
         </div>
       </noscript>

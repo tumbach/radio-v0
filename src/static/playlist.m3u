@@ -1,7 +1,5 @@
-https://radio.tumba.ch/stream
-https://radio.tumba.ch/stream-low
-https://radio.tumba.ch/stream-ultra-low
-
-https://radio.tumbachegvyaadyq.onion/stream
-https://radio.tumbachegvyaadyq.onion/stream-low
-https://radio.tumbachegvyaadyq.onion/stream-ultra-low
+#EXTM3U
+#EXTINF:-1,Tumbach;Radio (clearnet)
+http://radio.tumba.ch/stream.aac
+#EXTINF:-1,Tumbach;Radio (onion)
+http://radio.tumbach3fog3l35w7usf5fgx37eaif2zb266dc3s5jw7gmhg6hsm7aad.onion/stream.aac

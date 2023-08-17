@@ -67,7 +67,7 @@ class WS {
   }
 }
 
-class Background {
+/*class Background {
 
   constructor() {
     this.stylesheet = Background.createStylesheet();
@@ -113,25 +113,16 @@ class Background {
     return image;
   }
 
-}
+}*/
 
 class Jukebox {
   constructor(station = 'tumbach') {
     let secure = location.protocol.includes('s:') ? "s" : "";
-    let isFckingWebkit = navigator.product !== 'Gecko';
-
-    if (isFckingWebkit) {
-      console.log('Увы, Webkit не поддерживает корректное воспроизведение OPUS (завершает загрузку при смене метатегов.\n' +
-      'Исправлять это никто не собирается, поэтому формат изменён.');
-    }
-
-
-    let correctStream = isFckingWebkit ? '-low' : '';
     this.stations = {
-      tumbach: 'http'+ secure + '://' + document.domain + '/stream' + correctStream,
+      tumbach: 'http'+ secure + '://' + document.domain + '/stream.aac',
     };
     this.station = station;
-    this.titleturtleURL = 'ws'+ secure + '://' + document.domain + '/ws';
+    this.titleturtleURL = 'wss://titleturtle.tumba.ch/ws';
 
     if (/complete|interactive/.test(document.readyState)) {
       this.init();
@@ -149,7 +140,7 @@ class Jukebox {
 }
 
 
-let background = new Background();
+//let background = new Background();
 let jukebox = new Jukebox();
 let trackHistory = [];
 let trackHistoryLength = 0;
@@ -159,7 +150,7 @@ class DOM {
     this.Time = document.getElementsByTagName('h3')[0];
     this.Artist = document.getElementsByTagName('h2')[0];
     this.Title = document.getElementsByTagName('h1')[0];
-    this.Online = document.getElementsByClassName('online')[0];
+    //this.Online = document.getElementsByClassName('online')[0];
     this.TrackHistory = document.getElementsByClassName('history')[0];
   }
 }
@@ -175,13 +166,13 @@ function connectToTitleTurtle(stationId, titleturtleURL) {
       niceAppend(message, dom.Artist);
       ws.send(`HISTORY ${stationId} 5`);
       ws.send(`SUB ${stationId}`);
-      ws.send(`STATS SUB ${stationId}`);
+      //ws.send(`STATS SUB ${stationId}`);
     },
     onmessage: (ws, e) => {
       try {
         let data = JSON.parse(e.data);
         let track = data[stationId];
-        if (track instanceof Object) { // SBCR callback
+        if (track instanceof Object) { // SUB callback
           setTime(track.date, track.now);
           dom.Artist.title = (track.artist || '<unknown>') + ' ';
           dom.Title.title = track.title || '<unknown>';
@@ -198,9 +189,9 @@ function connectToTitleTurtle(stationId, titleturtleURL) {
             trackHistory = trackHistory.slice(-trackHistoryLength - 1);
           }
           updateHistory();
-        } else if (data.online === +data.online) { // STATS callback
+        } /*else if (data.online === +data.online) { // STATS callback
           dom.Online.innerText = data.online + ' ';
-        } else if (data instanceof Array) { // HISTORY callback
+        }*/ else if (data instanceof Array) { // HISTORY callback
           trackHistory = trackHistory.concat(data);
           trackHistoryLength = data.length;
           //updateHistory();
