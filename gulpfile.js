@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const cleanCSS = require('gulp-clean-css');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const watch = require('gulp-watch');
 const babel = require("gulp-babel");
 const htmlminify = require('gulp-htmlclean');
