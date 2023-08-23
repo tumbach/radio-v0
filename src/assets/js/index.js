@@ -67,17 +67,17 @@ class WS {
   }
 }
 
-/*class Background {
+class Background {
 
   constructor() {
     this.stylesheet = Background.createStylesheet();
     this.stylesheet.insertRule('.jsOnly { display: initial !important }', 0);
     this.stylesheet.insertRule('.wrapper.jsOnly { display: flex !important }', 0);
 
-    this.init();
+    //this.init();
   }
 
-  init() {
+  /*init() {
     let random = arr => arr[Math.floor(Math.random() * arr.length)];
 
     let digits0 = [0, 1, 2];
@@ -91,7 +91,7 @@ class WS {
 
   fini() {
     this.stylesheet.deleteRule(this.ruleIndex);
-  }
+  }*/
 
   static createStylesheet() {
     let stylesheet;
@@ -107,13 +107,13 @@ class WS {
     return stylesheet;
   }
 
-  static createImage(url, w, h) {
+  /*static createImage(url, w, h) {
     let image = new Image(w, h);
     image.src = url;
     return image;
-  }
+  }*/
 
-}*/
+}
 
 class Jukebox {
   constructor(station = 'tumbach') {
@@ -132,7 +132,6 @@ class Jukebox {
   }
 
   init() {
-    console.log(this);
     window.dom = new DOM();
     initPlayer(this.station, this.stations);
     connectToTitleTurtle(this.station, this.titleturtleURL);
@@ -140,7 +139,7 @@ class Jukebox {
 }
 
 
-//let background = new Background();
+let background = new Background();
 let jukebox = new Jukebox();
 let trackHistory = [];
 let trackHistoryLength = 0;
@@ -173,20 +172,22 @@ function connectToTitleTurtle(stationId, titleturtleURL) {
         let data = JSON.parse(e.data);
         let track = data[stationId];
         if (track instanceof Object) { // SUB callback
-          setTime(track.date, track.now);
-          dom.Artist.title = (track.artist || '<unknown>') + ' ';
+          setTime(track.date, +track.now || +track.date);
+          dom.Artist.title = (track.artist || '<unknown>');
           dom.Title.title = track.title || '<unknown>';
           delay(this.dl? 2000 : 0).then(() => {
             niceAppend(dom.Artist.title, dom.Artist, false);
             niceAppend(dom.Title.title, dom.Title, false);
-            setTitle(dom.Artist.title + '- ' + dom.Title.title);
+            setTitle(dom.Artist.title + ' - ' + dom.Title.title);
           });
           if (!this.dl) {
             this.dl = true;
           }
-          trackHistory.push(track);
-          if (trackHistory.length > trackHistoryLength + 1) {
-            trackHistory = trackHistory.slice(-trackHistoryLength - 1);
+          if (!track.now) {
+            trackHistory.push(track);
+            if (trackHistory.length > trackHistoryLength + 1) {
+              trackHistory = trackHistory.slice(-trackHistoryLength - 1);
+            }
           }
           updateHistory();
         } /*else if (data.online === +data.online) { // STATS callback
@@ -260,7 +261,7 @@ function setTitle(t) {
   }
 }
 
-function setTime(start, now) {
+function setTime(start, now = Math.floor(+new Date() / 1000)) {
   let seconds = now - start;
   console.log(`Hacking the time. Set ${seconds} seconds...`);
   time = start;
@@ -284,12 +285,12 @@ function prettifyTime(time) {
 }
 
 function initPlayer(stationId, stations) {
-  let button = document.getElementById('button_play');
+  let button = document.getElementById('main-button');
   let audio = new Audio();
   audio.crossOrigin = 'anonymous';
   button.addEventListener('click', () => {
-    button.classList.toggle('fa-play');
-    button.classList.toggle('fa-pause');
+    button.classList.toggle('play', !audio.paused);
+    button.classList.toggle('pause', audio.paused);
     if (!audio.src || audio.paused) {
       audio.src = stations[stationId];
       return audio.play();

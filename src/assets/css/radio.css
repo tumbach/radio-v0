@@ -1,15 +1,3 @@
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Sans'), local('NotoSans'), url('https://tumba.ch/static/fonts/NotoSans-Regular.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url('https://tumba.ch/static/fonts/NotoSans-Bold.woff2') format('woff2');
-}
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #222 }
 ::-webkit-scrollbar-thumb { background: #2ec2ff }
@@ -22,9 +10,10 @@ body {
   background: #000;
   color: rgba(255,255,255, .7);
   font-family: 'Noto Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  min-font-size: 1vh;
 }
-#bckgrnd {
+/*#bckgrnd {
   opacity: 0;
   background-position: center;
   background-size: cover;
@@ -36,7 +25,7 @@ body {
   transition: .5s background, .5s opacity;
   filter: blur(10px);
   z-index: -1;
-}
+}*/
 .wrapper {
   position: relative;
   min-height: 100vh;
@@ -108,18 +97,24 @@ h3 {
 a {
   color: rgba(240,240,240,.7);
 }
-#button_play {
-  font-size: 10vmin;
+#main-button {
+  padding: 2vmax;
+  width: 8vmax;
+  max-width: 25vmin;
   transition: opacity .2s;
 }
-#button_play.fa-pause {
+#main-button.pause {
   opacity: 0;
 }
-body:hover #button_play.fa-pause {
+body:hover #main-button.pause {
   opacity: .24;
 }
-body:hover #button_play:hover {
+body:hover #main-button:hover {
   opacity: 1;
+}
+#main-button.play #main-button-pause,
+#main-button.pause #main-button-play {
+  display: none;
 }
 .pointer {
   cursor: pointer;
@@ -128,14 +123,14 @@ body:hover #button_play:hover {
   position: absolute;
   bottom: 21vmin;
   left: 4vmin;
-  opacity: .42;
+  /*opacity: .42;*/
 }
 .history, .history > * {
   transition: opacity .2s;
 }
-.history:hover {
+/*.history:hover {
   opacity: 1;
-}
+}*/
 .history:hover > * {
   opacity: 1 !important;
 }

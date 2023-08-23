@@ -8,7 +8,6 @@
   <body>
     <main id="content">
       <link rel="stylesheet" href="/assets/css/radio.css">
-      <link rel="stylesheet" href="/assets/css/fa.css">
       <script src="/assets/js/index.js"></script>
 
       <div id="bckgrnd"></div>
@@ -32,7 +31,17 @@
       </noscript>
 
       <div class="wrapper center jsOnly">
-        <i id="button_play" class="fas fa-play center block pointer"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             viewBox="0 0 125 125" xml:space="preserve"
+             id="main-button" class="play center block pointer">
+            <g id="main-button-play">
+                <polygon points="0 0, 125 62.5, 0 125" fill="#fff" />
+            </g>
+            <g id="main-button-pause">
+                <polygon points="0 0, 50 0, 50 125, 0 125" fill="#fff" />
+                <polygon points="75 0, 125 0, 125 125, 75 125" fill="#fff" />
+            </g>
+        </svg>
       </div>
 
       <div class="history"></div>
